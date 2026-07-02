@@ -6,7 +6,7 @@ import { authAPI } from '@/lib/api';
 
 const AuthContext = createContext(null);
 
-const PUBLIC_PATHS = ['/login', '/register', '/verify', '/forgot-password'];
+const PUBLIC_PATHS = ['/', '/login', '/register', '/verify', '/forgot-password'];
 
 function getCookie(name) {
   if (typeof document === 'undefined') return null;
