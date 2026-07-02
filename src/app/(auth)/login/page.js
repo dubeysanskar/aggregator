@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Eye, EyeOff, ArrowRight, Truck, Shield, Zap } from 'lucide-react';
 
 export default function LoginPage() {

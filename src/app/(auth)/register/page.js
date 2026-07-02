@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { ArrowRight, Eye, EyeOff, Building2, Truck, Shield, Zap } from 'lucide-react';
 
 export default function RegisterPage() {

@@ -5,7 +5,7 @@ import {
   TrendingUp, TrendingDown, IndianRupee, ArrowUpRight,
   Wallet, Calculator, Eye, Upload, Zap
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 const stats = [
   { label: 'Total Shipments', value: '12,847', change: '+12.3%', up: true, icon: Package, iconBg: 'bg-brand-bg', iconColor: 'text-brand' },

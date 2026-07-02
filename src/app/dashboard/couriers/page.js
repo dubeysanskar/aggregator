@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Truck, TrendingUp, TrendingDown, Clock, Package, CheckCircle2, AlertTriangle, RotateCcw } from 'lucide-react';
 
 const couriers = [

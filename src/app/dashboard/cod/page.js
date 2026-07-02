@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Banknote, IndianRupee, Clock, Check, Search, Filter, Download, Calendar } from 'lucide-react';
 
 const summary = [

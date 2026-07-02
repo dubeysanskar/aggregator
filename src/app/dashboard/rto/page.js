@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { RotateCcw, Truck, Clock, TrendingDown, Search, Filter, MapPin } from 'lucide-react';
 
 const rtoCases = [

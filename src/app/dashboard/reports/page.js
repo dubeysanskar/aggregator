@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { BarChart3, TrendingUp, Package, IndianRupee, Download, Calendar } from 'lucide-react';
 
 const volumeData = [

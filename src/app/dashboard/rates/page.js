@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Calculator, MapPin, Weight, Package, IndianRupee, Clock, TrendingUp, Award, Truck } from 'lucide-react';
 
 const mockResults = [

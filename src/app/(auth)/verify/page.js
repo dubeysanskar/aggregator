@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Mail, Phone, Check, ArrowRight } from 'lucide-react';
 
 export default function VerifyPage() {

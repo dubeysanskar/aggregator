@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { Package, MapPin, IndianRupee, Zap, Clock, Check, ChevronRight, ArrowLeft, Award, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 

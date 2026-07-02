@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Settings as SettingsIcon, User, MapPin, Key, Bell, Plus, Pencil, Trash2, Copy, Eye, EyeOff, Save } from 'lucide-react';
 
 const tabs = [

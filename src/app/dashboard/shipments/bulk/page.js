@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Upload, FileSpreadsheet, Check, AlertCircle, Download, X } from 'lucide-react';
 
 export default function BulkUploadPage() {
