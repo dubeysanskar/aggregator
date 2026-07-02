@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'motion/react';
 import { Banknote, IndianRupee, Clock, Check, Search, Filter, Download, Calendar } from 'lucide-react';
 
 const summary = [
@@ -23,7 +22,7 @@ const statusColors = { Settled: 'bg-success-bg text-success', Pending: 'bg-warni
 export default function CODPage() {
   const [filter, setFilter] = useState('all');
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+    <div className="animate-fade-in space-y-6">
       <div className="flex items-center justify-between">
         <div><h1 className="text-xl font-bold text-slate-800">COD Settlements</h1><p className="text-sm text-slate-500 mt-0.5">Track your Cash on Delivery remittances</p></div>
         <button className="flex items-center gap-2 px-3.5 py-2 bg-white border border-border rounded-lg text-sm text-slate-600 hover:bg-bg-elevated"><Download size={15} /> Export</button>
@@ -73,6 +72,6 @@ export default function CODPage() {
           </tbody>
         </table>
       </div>
-    </motion.div>
+    </div>
   );
 }

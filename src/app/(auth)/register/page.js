@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'motion/react';
 import { ArrowRight, Eye, EyeOff, Building2, Truck, Shield, Zap } from 'lucide-react';
 
 export default function RegisterPage() {
@@ -59,7 +58,7 @@ export default function RegisterPage() {
 
       {/* Right — Form */}
       <div className="flex-1 flex items-center justify-center p-6 bg-bg-page">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-sm">
+        <div className="animate-fade-in w-full max-w-sm">
           <div className="lg:hidden flex items-center gap-3 mb-8 justify-center">
             <div className="w-10 h-10 rounded-xl bg-brand flex items-center justify-center text-white font-bold shadow-lg shadow-brand/25">PU</div>
             <h1 className="text-xl font-bold text-slate-800">Parcel Uncle</h1>
@@ -124,7 +123,7 @@ export default function RegisterPage() {
             Already have an account?{' '}
             <a href="/login" className="text-brand hover:text-brand-dark font-medium">Sign in</a>
           </p>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

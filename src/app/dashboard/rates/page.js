@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'motion/react';
 import { Calculator, MapPin, Weight, Package, IndianRupee, Clock, TrendingUp, Award, Truck } from 'lucide-react';
 
 const mockResults = [
@@ -16,7 +15,7 @@ export default function RatesPage() {
   const [showResults, setShowResults] = useState(false);
 
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-4xl mx-auto space-y-6">
+    <div className="animate-fade-in max-w-4xl mx-auto space-y-6">
       <div>
         <h1 className="text-xl font-bold text-slate-800">Rate Calculator</h1>
         <p className="text-sm text-slate-500 mt-0.5">Compare shipping rates across all courier partners</p>
@@ -59,7 +58,7 @@ export default function RatesPage() {
       </div>
 
       {showResults && (
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
+        <div className="animate-fade-in space-y-3">
           <h2 className="text-sm font-semibold text-slate-700">Available Couriers ({mockResults.length})</h2>
           {mockResults.map((c, i) => (
             <div key={c.id} className={`bg-white border rounded-xl p-4 flex items-center justify-between ${i === 0 ? 'border-brand shadow-md shadow-brand/10' : 'border-border hover:border-slate-300'}`}>
@@ -89,8 +88,8 @@ export default function RatesPage() {
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
       )}
-    </motion.div>
+    </div>
   );
 }

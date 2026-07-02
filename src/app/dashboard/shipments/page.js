@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'motion/react';
 import { Package, Search, Filter, Download, Plus, MapPin, Truck, MoreHorizontal } from 'lucide-react';
 import Link from 'next/link';
 
@@ -26,7 +25,7 @@ export default function ShipmentsPage() {
   const [activeFilter, setActiveFilter] = useState('all');
 
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-5">
+    <div className="animate-fade-in space-y-5">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold text-slate-800">Shipments</h1>
@@ -92,6 +91,6 @@ export default function ShipmentsPage() {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

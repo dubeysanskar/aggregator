@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion } from 'motion/react';
 import { Mail, Phone, Check, ArrowRight } from 'lucide-react';
 
 export default function VerifyPage() {
@@ -35,10 +34,7 @@ export default function VerifyPage() {
 
   return (
     <div className="min-h-screen bg-bg-page flex items-center justify-center p-6">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-sm"
+      <div className="animate-fade-in w-full max-w-sm"
       >
         <div className="flex items-center gap-3 mb-8 justify-center">
           <div className="w-10 h-10 rounded-xl bg-brand flex items-center justify-center text-white font-bold shadow-lg shadow-brand/25">PU</div>
@@ -106,16 +102,16 @@ export default function VerifyPage() {
             </div>
           </div>
         ) : (
-          <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="bg-white border border-border rounded-xl p-8 text-center shadow-sm">
+          <div className="animate-fade-in bg-white border border-border rounded-xl p-8 text-center shadow-sm">
             <div className="w-16 h-16 mx-auto rounded-2xl bg-success-bg flex items-center justify-center mb-4">
               <Check size={32} className="text-success" />
             </div>
             <h2 className="text-lg font-bold text-slate-800 mb-1">Account Verified!</h2>
             <p className="text-sm text-slate-500">Redirecting to your dashboard...</p>
             <div className="mt-4 w-8 h-8 mx-auto border-2 border-brand/30 border-t-brand rounded-full animate-spin" />
-          </motion.div>
+          </div>
         )}
-      </motion.div>
+      </div>
     </div>
   );
 }

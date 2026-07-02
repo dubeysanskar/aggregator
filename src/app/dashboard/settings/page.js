@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'motion/react';
 import { Settings as SettingsIcon, User, MapPin, Key, Bell, Plus, Pencil, Trash2, Copy, Eye, EyeOff, Save } from 'lucide-react';
 
 const tabs = [
@@ -25,7 +24,7 @@ export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState('profile');
 
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+    <div className="animate-fade-in space-y-6">
       <div><h1 className="text-xl font-bold text-slate-800">Settings</h1><p className="text-sm text-slate-500 mt-0.5">Manage your account, addresses, and integrations</p></div>
 
       <div className="flex gap-6">
@@ -142,6 +141,6 @@ export default function SettingsPage() {
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

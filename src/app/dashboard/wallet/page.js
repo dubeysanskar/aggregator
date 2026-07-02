@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'motion/react';
 import { ArrowUpRight, ArrowDownRight, Plus, IndianRupee, Clock } from 'lucide-react';
 
 const transactions = [
@@ -14,7 +13,7 @@ const transactions = [
 
 export default function WalletPage() {
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+    <div className="animate-fade-in space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold text-slate-800">Wallet</h1>
@@ -80,6 +79,6 @@ export default function WalletPage() {
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

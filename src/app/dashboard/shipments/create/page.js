@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { Package, MapPin, IndianRupee, Zap, Clock, Check, ChevronRight, ArrowLeft, Award, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 
@@ -26,7 +25,7 @@ export default function CreateShipmentPage() {
   );
 
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto space-y-6">
+    <div className="animate-fade-in max-w-5xl mx-auto space-y-6">
       <div className="flex items-center gap-3">
         <Link href="/dashboard/shipments" className="p-2 rounded-lg hover:bg-bg-elevated text-slate-400 hover:text-slate-700 transition-colors"><ArrowLeft size={18} /></Link>
         <div>
@@ -49,9 +48,9 @@ export default function CreateShipmentPage() {
         ))}
       </div>
 
-      <AnimatePresence mode="wait">
+      
         {step === 1 && (
-          <motion.div key="s1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="animate-fade-in grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="bg-white border border-border rounded-xl p-5 space-y-4">
               <div className="flex items-center gap-2"><div className="w-8 h-8 rounded-lg bg-success-bg flex items-center justify-center"><MapPin size={16} className="text-success" /></div><h3 className="text-sm font-semibold text-slate-700">Pickup Address</h3></div>
               <div className="grid grid-cols-2 gap-3">
@@ -88,11 +87,11 @@ export default function CreateShipmentPage() {
             <div className="lg:col-span-2 flex justify-end">
               <button onClick={() => setStep(2)} className="flex items-center gap-2 px-6 py-2.5 bg-brand hover:bg-brand-dark text-white text-sm font-semibold rounded-lg shadow-md shadow-brand/20">Choose Courier <ChevronRight size={16} /></button>
             </div>
-          </motion.div>
+          </div>
         )}
 
         {step === 2 && (
-          <motion.div key="s2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-4">
+          <div className="animate-fade-in space-y-4">
             <div className="bg-gradient-to-r from-brand-bg via-purple-bg to-info-bg border border-brand/10 rounded-xl p-4 flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-brand flex items-center justify-center shrink-0"><Zap size={20} className="text-white" /></div>
               <div>
@@ -135,11 +134,11 @@ export default function CreateShipmentPage() {
               <button onClick={() => setStep(1)} className="flex items-center gap-2 px-4 py-2 text-sm text-slate-500 hover:text-slate-700"><ArrowLeft size={16} /> Back</button>
               <button onClick={() => setStep(3)} className="flex items-center gap-2 px-6 py-2.5 bg-brand hover:bg-brand-dark text-white text-sm font-semibold rounded-lg shadow-md shadow-brand/20">Confirm & Ship <ChevronRight size={16} /></button>
             </div>
-          </motion.div>
+          </div>
         )}
 
         {step === 3 && (
-          <motion.div key="s3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+          <div className="animate-fade-in">
             <div className="bg-white border border-border rounded-xl p-8 text-center space-y-4">
               <div className="w-16 h-16 mx-auto rounded-2xl bg-success-bg flex items-center justify-center"><Check size={32} className="text-success" /></div>
               <h2 className="text-lg font-bold text-slate-800">Ready to Ship!</h2>
@@ -149,9 +148,9 @@ export default function CreateShipmentPage() {
                 <button className="flex items-center gap-2 px-6 py-2.5 bg-success hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg shadow-md shadow-success/20"><Zap size={16} /> Ship Now</button>
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
-    </motion.div>
+      
+    </div>
   );
 }

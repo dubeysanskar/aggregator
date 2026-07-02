@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'motion/react';
 import { Search, MapPin, Check, ArrowRight } from 'lucide-react';
 
 const events = [
@@ -14,7 +13,7 @@ const events = [
 
 export default function TrackingPage() {
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mx-auto space-y-6">
+    <div className="animate-fade-in max-w-3xl mx-auto space-y-6">
       <div className="text-center space-y-2">
         <h1 className="text-2xl font-bold text-slate-800">Track Shipment</h1>
         <p className="text-sm text-slate-500">Enter any tracking ID to see real-time status</p>
@@ -58,6 +57,6 @@ export default function TrackingPage() {
           </div>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }

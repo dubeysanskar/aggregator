@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'motion/react';
 import { RotateCcw, Truck, Clock, TrendingDown, Search, Filter, MapPin } from 'lucide-react';
 
 const rtoCases = [
@@ -14,7 +13,7 @@ const statusColors = { 'RTO Initiated': 'bg-warning-bg text-warning', 'RTO In Tr
 
 export default function RTOPage() {
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+    <div className="animate-fade-in space-y-6">
       <div><h1 className="text-xl font-bold text-slate-800">RTO / Returns</h1><p className="text-sm text-slate-500 mt-0.5">Track return shipments and RTO analytics</p></div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -68,6 +67,6 @@ export default function RTOPage() {
           </tbody>
         </table>
       </div>
-    </motion.div>
+    </div>
   );
 }

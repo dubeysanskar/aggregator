@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
 import { Eye, EyeOff, ArrowRight, Truck, Shield, Zap, Package, Users, Building2, Globe } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -140,7 +139,7 @@ export default function LoginPage() {
 
       {/* Right — Form */}
       <div className="flex-1 flex items-center justify-center p-6 bg-bg-page">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="w-full max-w-sm">
+        <div className="animate-fade-in w-full max-w-sm">
           <div className="lg:hidden flex items-center gap-3 mb-8 justify-center">
             <div className={`w-10 h-10 rounded-xl ${config.badgeBg} flex items-center justify-center text-white font-bold shadow-lg ${config.badgeShadow}`}>{config.badge}</div>
             <h1 className="text-xl font-bold text-slate-800">Parcel Uncle</h1>
@@ -203,7 +202,7 @@ export default function LoginPage() {
               <a href="/register" className="text-brand hover:text-brand-dark font-medium">Sign up free</a>
             </p>
           )}
-        </motion.div>
+        </div>
       </div>
     </div>
   );

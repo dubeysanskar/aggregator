@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'motion/react';
 import { Upload, FileSpreadsheet, Check, AlertCircle, Download, X } from 'lucide-react';
 
 export default function BulkUploadPage() {
@@ -9,7 +8,7 @@ export default function BulkUploadPage() {
   const [uploading, setUploading] = useState(false);
 
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mx-auto space-y-6">
+    <div className="animate-fade-in max-w-3xl mx-auto space-y-6">
       <div>
         <h1 className="text-xl font-bold text-slate-800">Bulk Upload</h1>
         <p className="text-sm text-slate-500 mt-0.5">Upload CSV or Excel file to create multiple shipments</p>
@@ -59,6 +58,6 @@ export default function BulkUploadPage() {
       <button disabled={!file} className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-brand hover:bg-brand-dark text-white text-sm font-semibold rounded-xl shadow-md shadow-brand/20 disabled:opacity-40 disabled:cursor-not-allowed">
         <Upload size={16} /> Upload & Create Shipments
       </button>
-    </motion.div>
+    </div>
   );
 }

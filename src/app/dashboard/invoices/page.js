@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'motion/react';
 import { FileText, Download, IndianRupee, Calendar, Check, Clock } from 'lucide-react';
 
 const invoices = [
@@ -14,7 +13,7 @@ const invoices = [
 
 export default function InvoicesPage() {
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+    <div className="animate-fade-in space-y-6">
       <div className="flex items-center justify-between">
         <div><h1 className="text-xl font-bold text-slate-800">Invoices & Billing</h1><p className="text-sm text-slate-500 mt-0.5">View and download shipping invoices</p></div>
       </div>
@@ -68,6 +67,6 @@ export default function InvoicesPage() {
           </tbody>
         </table>
       </div>
-    </motion.div>
+    </div>
   );
 }

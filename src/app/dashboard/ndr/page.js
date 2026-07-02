@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'motion/react';
 import { AlertTriangle, Phone, MapPin, RotateCcw, Truck, MessageSquare, Search, Filter } from 'lucide-react';
 
 const ndrCases = [
@@ -16,7 +15,7 @@ export default function NDRPage() {
   const [activeAction, setActiveAction] = useState(null);
 
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+    <div className="animate-fade-in space-y-6">
       <div className="flex items-center justify-between">
         <div><h1 className="text-xl font-bold text-slate-800">NDR Management</h1><p className="text-sm text-slate-500 mt-0.5">Handle failed delivery attempts and take action</p></div>
         <div className="flex items-center gap-2">
@@ -82,6 +81,6 @@ export default function NDRPage() {
           </div>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }

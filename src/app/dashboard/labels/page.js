@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'motion/react';
 import { Tag, Search, Download, Printer, Package, Check } from 'lucide-react';
 
 const shipments = [
@@ -20,7 +19,7 @@ export default function LabelsPage() {
   const selectAll = () => setSelected(selected.length === shipments.length ? [] : shipments.map(s => s.id));
 
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+    <div className="animate-fade-in space-y-6">
       <div className="flex items-center justify-between">
         <div><h1 className="text-xl font-bold text-slate-800">Label Generation</h1><p className="text-sm text-slate-500 mt-0.5">Generate and download shipping labels</p></div>
         <div className="flex items-center gap-2">
@@ -77,6 +76,6 @@ export default function LabelsPage() {
           </div>
         </div>
       )}
-    </motion.div>
+    </div>
   );
 }

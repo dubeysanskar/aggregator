@@ -5,7 +5,6 @@ import {
   TrendingUp, TrendingDown, IndianRupee, ArrowUpRight,
   Wallet, Calculator, Eye, Upload, Zap
 } from 'lucide-react';
-import { motion } from 'motion/react';
 
 const stats = [
   { label: 'Total Shipments', value: '12,847', change: '+12.3%', up: true, icon: Package, iconBg: 'bg-brand-bg', iconColor: 'text-brand' },
@@ -31,14 +30,12 @@ const courierPerformance = [
   { name: 'Shadowfax', deliveries: 507, successRate: 87.3, avgDays: 2.8, color: 'bg-orange-500' },
 ];
 
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.06 } } };
-const item = { hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0, transition: { duration: 0.3 } } };
 
 export default function DashboardPage() {
   return (
-    <motion.div variants={container} initial="hidden" animate="show" className="space-y-6">
+    <div className="animate-fade-in space-y-6">
       {/* Header */}
-      <motion.div variants={item} className="flex items-center justify-between">
+      <div className="animate-fade-in flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold text-slate-800">Dashboard</h1>
           <p className="text-sm text-slate-500 mt-0.5">Welcome back. Here&apos;s your logistics overview.</p>
@@ -48,10 +45,10 @@ export default function DashboardPage() {
           <option>Last 30 days</option>
           <option>This month</option>
         </select>
-      </motion.div>
+      </div>
 
       {/* Stats */}
-      <motion.div variants={item} className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <div className="animate-fade-in grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
         {stats.map((stat) => {
           const Icon = stat.icon;
           return (
@@ -70,11 +67,11 @@ export default function DashboardPage() {
             </div>
           );
         })}
-      </motion.div>
+      </div>
 
       {/* Revenue + Quick Actions */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <motion.div variants={item} className="lg:col-span-2 bg-white border border-border rounded-xl p-5">
+        <div className="animate-fade-in lg:col-span-2 bg-white border border-border rounded-xl p-5">
           <div className="flex items-center justify-between mb-5">
             <div>
               <h2 className="text-sm font-semibold text-slate-800">Revenue Overview</h2>
@@ -95,9 +92,9 @@ export default function DashboardPage() {
               <div key={i} className="flex-1 rounded-t bg-gradient-to-t from-brand/20 to-brand/50 hover:from-brand/40 hover:to-brand/70 transition-colors cursor-default" style={{ height: `${h}%` }} />
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div variants={item} className="bg-white border border-border rounded-xl p-5 space-y-2">
+        <div className="animate-fade-in bg-white border border-border rounded-xl p-5 space-y-2">
           <h2 className="text-sm font-semibold text-slate-800 mb-2">Quick Actions</h2>
           {[
             { label: 'Create Shipment', desc: 'Book a new order', icon: Zap, href: '/dashboard/shipments/create', color: 'bg-brand-bg text-brand' },
@@ -117,12 +114,12 @@ export default function DashboardPage() {
               </a>
             );
           })}
-        </motion.div>
+        </div>
       </div>
 
       {/* Recent Shipments + Courier Performance */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <motion.div variants={item} className="bg-white border border-border rounded-xl overflow-hidden">
+        <div className="animate-fade-in bg-white border border-border rounded-xl overflow-hidden">
           <div className="flex items-center justify-between px-5 py-4 border-b border-border">
             <h2 className="text-sm font-semibold text-slate-800">Recent Shipments</h2>
             <a href="/dashboard/shipments" className="text-xs text-brand hover:text-brand-dark font-medium">View all →</a>
@@ -141,9 +138,9 @@ export default function DashboardPage() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div variants={item} className="bg-white border border-border rounded-xl overflow-hidden">
+        <div className="animate-fade-in bg-white border border-border rounded-xl overflow-hidden">
           <div className="flex items-center justify-between px-5 py-4 border-b border-border">
             <h2 className="text-sm font-semibold text-slate-800">Courier Performance</h2>
             <a href="/dashboard/couriers" className="text-xs text-brand hover:text-brand-dark font-medium">Details →</a>
@@ -168,8 +165,8 @@ export default function DashboardPage() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
