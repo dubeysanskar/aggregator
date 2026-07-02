@@ -1,7 +1,22 @@
 import axios from 'axios';
-import Cookies from 'js-cookie';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001/api/v1';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '/api/v1';
+
+function getCookie(name) {
+  if (typeof document === 'undefined') return null;
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? match[2] : null;
+}
+
+function setCookie(name, value, days) {
+  const d = new Date();
+  d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+  document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/`;
+}
+
+function removeCookie(name) {
+  document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+}
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -14,7 +29,7 @@ const api = axios.create({
 // Request interceptor — attach JWT token
 api.interceptors.request.use(
   (config) => {
-    const token = Cookies.get('access_token');
+    const token = getCookie('access_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -22,6 +37,7 @@ api.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
+
 
 // Response interceptor — handle 401, refresh token
 api.interceptors.response.use(
@@ -31,7 +47,7 @@ api.interceptors.response.use(
 
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      const refreshToken = Cookies.get('refresh_token');
+      const refreshToken = getCookie('refresh_token');
 
       if (refreshToken) {
         try {
@@ -39,13 +55,13 @@ api.interceptors.response.use(
             refresh: refreshToken,
           });
           const { access } = res.data;
-          Cookies.set('access_token', access, { expires: 1 });
+          setCookie('access_token', access, 1);
           originalRequest.headers.Authorization = `Bearer ${access}`;
           return api(originalRequest);
         } catch {
           // Refresh failed — redirect to login
-          Cookies.remove('access_token');
-          Cookies.remove('refresh_token');
+          removeCookie('access_token');
+          removeCookie('refresh_token');
           if (typeof window !== 'undefined') {
             window.location.href = '/login';
           }

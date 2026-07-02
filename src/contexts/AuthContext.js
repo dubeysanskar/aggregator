@@ -2,22 +2,44 @@
 
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import Cookies from 'js-cookie';
 import { authAPI } from '@/lib/api';
 
 const AuthContext = createContext(null);
 
 const PUBLIC_PATHS = ['/login', '/register', '/verify', '/forgot-password'];
 
+function getCookie(name) {
+  if (typeof document === 'undefined') return null;
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? match[2] : null;
+}
+
+function setCookie(name, value, days) {
+  const d = new Date();
+  d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+  document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/`;
+}
+
+function removeCookie(name) {
+  document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+}
+
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     const isPublic = PUBLIC_PATHS.some(p => pathname?.startsWith(p));
-    const token = Cookies.get('access_token');
+    const token = getCookie('access_token');
 
     if (!token) {
       setLoading(false);
@@ -32,8 +54,8 @@ export function AuthProvider({ children }) {
         setUser(res.data);
       })
       .catch(() => {
-        Cookies.remove('access_token');
-        Cookies.remove('refresh_token');
+        removeCookie('access_token');
+        removeCookie('refresh_token');
         if (!isPublic) {
           router.push('/login');
         }
@@ -41,13 +63,13 @@ export function AuthProvider({ children }) {
       .finally(() => {
         setLoading(false);
       });
-  }, [pathname, router]);
+  }, [mounted, pathname, router]);
 
   const login = useCallback(async (email, password) => {
     const res = await authAPI.login({ email, password });
     const { access, refresh, user: userData } = res.data;
-    Cookies.set('access_token', access, { expires: 1 });
-    Cookies.set('refresh_token', refresh, { expires: 7 });
+    setCookie('access_token', access, 1);
+    setCookie('refresh_token', refresh, 7);
     setUser(userData);
     router.push('/dashboard');
     return res.data;
@@ -59,8 +81,8 @@ export function AuthProvider({ children }) {
   }, []);
 
   const logout = useCallback(() => {
-    Cookies.remove('access_token');
-    Cookies.remove('refresh_token');
+    removeCookie('access_token');
+    removeCookie('refresh_token');
     setUser(null);
     router.push('/login');
   }, [router]);
@@ -75,7 +97,7 @@ export function AuthProvider({ children }) {
     return res.data;
   }, []);
 
-  if (loading) {
+  if (!mounted || loading) {
     return (
       <div className="min-h-screen bg-bg-page flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
