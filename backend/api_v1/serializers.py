@@ -3,6 +3,68 @@ from shipments.models import Shipment, ShipmentStatusHistory
 from merchants.models import Merchant, PickupAddress
 from wallet.models import Wallet, WalletTransaction
 from aggregator.models import CourierPartner
+from accounts.models import User
+
+
+# ── Auth Serializers ──
+
+class RegisterSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    phone_number = serializers.CharField(max_length=15)
+    password = serializers.CharField(min_length=8, write_only=True)
+    first_name = serializers.CharField(max_length=150, required=False, default='')
+    last_name = serializers.CharField(max_length=150, required=False, default='')
+    company_name = serializers.CharField(max_length=255, required=False, default='')
+
+    def validate_email(self, value):
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError('An account with this email already exists.')
+        return value
+
+    def validate_phone_number(self, value):
+        if User.objects.filter(phone_number=value).exists():
+            raise serializers.ValidationError('An account with this phone number already exists.')
+        return value
+
+    def save(self):
+        data = self.validated_data
+        user = User.objects.create_user(
+            email=data['email'],
+            phone_number=data['phone_number'],
+            password=data['password'],
+            first_name=data.get('first_name', ''),
+            last_name=data.get('last_name', ''),
+            company_name=data.get('company_name', ''),
+        )
+        return user
+
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField()
+
+
+class VerifyOTPSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    code = serializers.CharField(max_length=6)
+
+
+class ForgotPasswordSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+
+class ResetPasswordSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    code = serializers.CharField(max_length=6)
+    new_password = serializers.CharField(min_length=8)
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['uid', 'email', 'phone_number', 'first_name', 'last_name',
+                  'company_name', 'is_email_verified', 'is_phone_verified',
+                  'is_staff', 'date_joined']
 
 
 class ShipmentListSerializer(serializers.ModelSerializer):
